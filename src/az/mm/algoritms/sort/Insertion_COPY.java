@@ -20,9 +20,10 @@ public class Insertion_COPY {
             list.add(random);
         }
 
-        Collections.sort(list);
+//        Collections.sort(list);
 //        Arrays.sort(arr1);
-        MergeSort.sort(arr1);
+//        MergeSort.sort(arr1);
+        BubbleSort.sort(arr1);
         
         
         System.out.println(Arrays.toString(arr1));

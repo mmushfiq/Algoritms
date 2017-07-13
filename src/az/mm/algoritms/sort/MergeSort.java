@@ -1,5 +1,7 @@
 package az.mm.algoritms.sort;
 
+import java.util.Arrays;
+
 public class MergeSort {
     private final int[] tempArr, arr;
     
@@ -11,6 +13,7 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] testArray = {3, 5, 9, 1, 4, 6, 2, 8, 7};
         sort(testArray);
+        System.out.println(Arrays.toString(testArray));
     }
     
     public static void sort(int arr[]) {
@@ -42,6 +45,5 @@ public class MergeSort {
         
         while(i <= middle)
             arr[k++] = tempArr[i++];
-    }
-    
+    } 
 }
