@@ -27,7 +27,7 @@ public class Test {
         printArr(MaximumSubarray.findMaxCrossingSubarray(arr, 0, arr.length/2, arr.length));
         
         System.out.println("\n----findMaximumSubarray----");
-        MaximumSubarray.findMaximumSubarray(arr);
+        MaximumSubarray.findMaximumProfit(arr);
         
 //        System.out.println("---sort----");
 //        Arrays.sort(arr);
