@@ -119,6 +119,26 @@ public class MaximumSubarray {
 
         return new int[]{maxl, maxr, maxsum};
     }
+    
+    static int[] findMaximumSubarrayWithSimpleWay(int[] array) {
+        int maxSum = Integer.MIN_VALUE;
+        int maxl = -1;
+        int maxr = -1;
+        for (int left = 0; left < array.length; left++) {
+            int sum = 0;
+            for (int right = left; right < array.length; right++) {
+                System.out.println("");
+                sum += array[right];
+                if (sum > maxSum) {
+                    maxSum = sum;
+                    maxl = left;
+                    maxr = right;
+                }
+            }
+        }
+
+        return new int[]{maxl, maxr, maxSum};
+    }
 
     
     // 2nd way - recursive using divide and conquer method O(nlogn) - 
@@ -140,13 +160,13 @@ public class MaximumSubarray {
     }
     
     public static int[] findMaxCrossingSubarray(int[] a , int low, int mid, int high) {
-        int sum = 0, leftSum = Integer.MIN_VALUE, rightSum = Integer.MIN_VALUE;   // sum-dan bashqa digerlerine ozum 0 menimsetmishem, sonra min value eledim.. 
+        int sum = 0, maxLeftSum = Integer.MIN_VALUE, maxRightSum = Integer.MIN_VALUE;   // sum-dan bashqa digerlerine ozum 0 menimsetmishem, sonra min value eledim.. 
         int maxLeft = 0/*mid*/, maxRight = 0/*mid+1*/;            // ...onu arashdirib deqiqleshdirmek lazimdi..
         
         for (int i = mid; i >= low; i--) {
             sum += a[i];
-            if (leftSum < sum) {
-                leftSum = sum;
+            if (maxLeftSum < sum) {
+                maxLeftSum = sum;
                 maxLeft = i;
             }
         }
@@ -154,16 +174,17 @@ public class MaximumSubarray {
         sum = 0;
         for (int j = mid + 1; j <= high; j++) {
             sum += a[j];
-            if (rightSum < sum) {
-                rightSum = sum;
+            if (maxRightSum < sum) {
+                maxRightSum = sum;
                 maxRight = j;
             }
         }
 
 //        System.out.println("[" + maxLeft + "]-[" + maxRight + "] " + (leftSum + rightSum));
         
-        return new int[]{ maxLeft, maxRight, (leftSum + rightSum)}; 
+        return new int[]{ maxLeft, maxRight, (maxLeftSum + maxRightSum)}; 
     }
+    
     
     // 3rd way - using Kadane's Algorithm, the best way according to complexity O(n) - http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
     static int[] maxSubArraySum(int a[]) {
