@@ -1,11 +1,11 @@
-package az.mm.algoritms;
+package az.mm.algoritms.maximumsubarray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class MaximumSubarray {
+public class MaximumSubarray1 {
     static long start, duration;
 
     public static void main(String[] args) {
@@ -206,6 +206,53 @@ public class MaximumSubarray {
             } 
         }
         return new int[]{left, right, max_so_far};
+    }
+    
+    public static int[] findMaximumSubarrayWithKadane(int arr[]) {
+        int maxSum = Integer.MIN_VALUE, sum = 0;
+        int left=0, right=0, temp=0;
+
+        for (int i = 0, length = arr.length; i < length; i++) {
+            sum += arr[i];
+            
+            if (maxSum < sum) {
+                maxSum = sum;
+                left = temp;
+                right = i;
+            }
+            if (sum < 0){
+                sum = 0;
+                temp = i + 1;
+            } 
+        }
+        return new int[]{left, right, maxSum};
+    }
+    
+    
+    public static int[] findMaximumSubarrayWithKadane2(int arr[]) {
+        int maxSum = Integer.MIN_VALUE, sum = 0;
+        int left = 0, right = 0, next = 0;
+        int i = 0;
+
+        for (int length = arr.length; i < length; i++) {
+            sum += arr[i];
+
+            if (next == i) System.out.print("[" + next + ".. ");
+            
+            if (maxSum < sum) {
+                maxSum = sum;
+                left = next;
+                right = i;
+            }
+            if (sum < 0) {
+                sum = 0;
+                next = i + 1;
+                System.out.println(i + "] maxSum: " + maxSum);
+            }
+        }
+        System.out.println(i + "] maxSum: " + maxSum);
+        System.out.println("\n[" + left + ".. " + right + "] maxSum: " + maxSum + " <-- result");
+        return new int[]{left, right, maxSum};
     }
 
     

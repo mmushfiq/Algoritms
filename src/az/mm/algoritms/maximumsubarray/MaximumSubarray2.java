@@ -1,4 +1,4 @@
-package az.mm.algoritms;
+package az.mm.algoritms.maximumsubarray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,10 +8,20 @@ import java.util.Random;
 public class MaximumSubarray2 {
 
     public static void main(String[] args) {
-//        int[] change = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+        int[] change = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+        change = new int[]{12, -7, -3, -3, 12, -1, -8, -4, 6, -3, 4, 5, -7, 12, 13};
         int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
-        findMaximumSubarrayWithSimpleWay2(arr);
+        int[] arr2 = {6, 4, -5, 3, -6, -5, -1, 8, 0, 9, -4, 10, 5, -3, -4}; 
+        
+        //-6, -3, 9, -1, -2, 8, -4, -4, -3, 2, -6, 1, -4, 12, -7
+        // [2, -3, 8, -2, 3, -5, -4, -8, -5, 8, 12, 1, 2, 12, 4] hele ki en yaxsi
+        // 12, -7, -3, -3, 12, -1, -8, -4, 6, -3, 4, 5, -7, 12, 13
+        
+//        findMaximumSubarrayWithSimpleWay2(arr);
 //        findMaximumProfit();
+        
+//        change = createUniqueIntArray(15, 10, -10);
+        findMaximumSubarrayWithKadane2(change);
     }
     
     public static void findMaximumProfit() {
@@ -49,12 +59,11 @@ public class MaximumSubarray2 {
     }
     
     public static int[] findMaximumSubarrayWithSimpleWay(int[] arr) {
-        int maxSum = Integer.MIN_VALUE;
-        int left = -1;
-        int right = -1;
-        for (int i = 0; i < arr.length; i++) {
-            int sum = 0;
-            for (int j = i; j < arr.length; j++) {
+        int maxSum = Integer.MIN_VALUE, sum = 0;
+        int left = 0, right = 0;
+        for (int i = 0, length = arr.length; i < length; i++) {
+            sum = 0;
+            for (int j = i; j < length; j++) {
                 sum += arr[j];
                 if (sum > maxSum) {
                     maxSum = sum;
@@ -69,14 +78,15 @@ public class MaximumSubarray2 {
     
     
     public static int[] findMaximumSubarrayWithSimpleWay2(int[] arr) {
-        int maxSum = Integer.MIN_VALUE;
+        int maxSum = Integer.MIN_VALUE, sum = 0;;
         int left = -1;
         int right = -1;
         int i,j;
         for (i = 0; i < arr.length; i++) {
-            int sum = 0;
+            System.out.println("Addim " + i);
+            sum = 0;
             for (j = i; j < arr.length; j++) {
-                System.out.print("arr["+j+"] + ");
+                System.out.print("\tarr["+j+"] + ");
                 sum += arr[j];
                 if (sum > maxSum) {
                     maxSum = sum;
@@ -135,6 +145,71 @@ public class MaximumSubarray2 {
 
         return new int[]{ maxLeft, maxRight, (maxLeftSum + maxRightSum)}; 
     }
+    
+    
+    public static int[] findMaximumSubarrayWithKadane(int arr[]) {
+        int maxSum = Integer.MIN_VALUE, sum = 0;
+        int left = 0, right = 0, next = 0;
+
+        for (int i = 0, length = arr.length; i < length; i++) {
+            sum += arr[i];
+
+            if (maxSum < sum) {
+                maxSum = sum;
+                left = next;
+                right = i;
+            }
+            if (sum < 0) {
+                sum = 0;
+                next = i + 1;
+            }
+        }
+        return new int[]{left, right, maxSum};
+    }
+
+    public static int[] findMaximumSubarrayWithKadane2(int arr[]) {
+        int maxSum = Integer.MIN_VALUE, sum = 0;
+        int left = 0, right = 0, next = 0;
+        int i = 0;
+
+        for (int length = arr.length; i < length; i++) {
+            sum += arr[i];
+
+            if (next == i) System.out.print("[" + next + ".. ");
+            
+            if (maxSum < sum) {
+                maxSum = sum;
+                left = next;
+                right = i;
+            }
+            if (sum < 0) {
+                sum = 0;
+                next = i + 1;
+                System.out.println(i + "] maxSum: " + maxSum);
+            }
+        }
+        System.out.println(i + "] maxSum: " + maxSum);
+        System.out.println("\n[" + left + ".. " + right + "] maxSum: " + maxSum + " <-- result");
+        return new int[]{left, right, maxSum};
+    }
+    
+    
+    public static int[] createUniqueIntArray(int length, int maxValue, int minValue){
+        List<Integer> list = new ArrayList<>();
+        for(int i=0; i<length; i++){
+            int random1 = new Random().nextInt((maxValue - minValue) + 1) + minValue;
+            int random2 = new Random().nextInt(5) + 1;
+            int value = random1 + random2;
+//            if(!list.contains(value)) 
+                list.add(value);
+        }
+        int[] arr = list.stream().mapToInt(i->i).toArray();
+        
+        System.out.println(Arrays.toString(arr));
+       
+        return arr;
+    }
+
     
 }
 

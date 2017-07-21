@@ -1,6 +1,6 @@
 package az.mm.algoritms.test;
 
-import az.mm.algoritms.MaximumSubarray;
+import az.mm.algoritms.maximumsubarray.MaximumSubarray;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,17 +17,17 @@ public class Test {
         printArr(arr);
         System.out.println("-------");
         
-        System.out.println("\n----findMaximumSubarray recursive----");
-        printArr(MaximumSubarray.findMaximumSubarray(arr, 0, arr.length-1));
-        
-        System.out.println("\n----findMaxCrossingSubarray length-1 ----");
-        printArr(MaximumSubarray.findMaxCrossingSubarray(arr, 0, arr.length/2, arr.length-1));
-        
-        System.out.println("\n----findMaxCrossingSubarray length----");
-        printArr(MaximumSubarray.findMaxCrossingSubarray(arr, 0, arr.length/2, arr.length));
-        
+//        System.out.println("\n----findMaximumSubarray recursive----");
+//        printArr(MaximumSubarray.findMaximumSubarray(arr, 0, arr.length-1));
+//        
+//        System.out.println("\n----findMaxCrossingSubarray length-1 ----");
+//        printArr(MaximumSubarray.findMaxCrossingSubarray(arr, 0, arr.length/2, arr.length-1));
+//        
+//        System.out.println("\n----findMaxCrossingSubarray length----");
+//        printArr(MaximumSubarray.findMaxCrossingSubarray(arr, 0, arr.length/2, arr.length));
+//        
         System.out.println("\n----findMaximumSubarray----");
-        MaximumSubarray.findMaximumProfit(arr);
+//        MaximumSubarray.findMaximumProfit(arr);
         
 //        System.out.println("---sort----");
 //        Arrays.sort(arr);
