@@ -28,7 +28,7 @@ change = createDifferencesArray(priceOfDays);
 */
 
 // boyuk hecmli test uchun unique olma shertini qaldiracam, chunki contains metodu xeyli vaxt alacaq
-priceOfDays = createUniqueIntArray(1_000_000, 5000, -5000);
+priceOfDays = createUniqueIntArray(1_000, 5000, -5000);
 
 System.out.println("1st way");
 start();
@@ -67,24 +67,23 @@ public static int[] findMaximumSubarrayWithSimpleWay(int[] arr) {
 }
 
 
-// 2nd way - divide and conquer, complexity O(nlogn) - 
+// 2nd way - divide and conquer, complexity O(nlogn)
 public static int[] findMaximumSubarray(int[] a, int low, int high) {
-    if (low == high) {
-        return new int[]{low, high, a[low]};
-    } else {
-        int mid = (low+high)/2;
-        int[] left = findMaximumSubarray(a, low, mid);       
-        int[] right = findMaximumSubarray(a, mid+1, high);   
-        int[] cross = findMaxCrossingSubarray(a, low, mid, high);
+    if (low == high) return new int[]{low, high, a[low]};
+    
+    int mid = (low+high)/2;
+    int[] left = findMaximumSubarray(a, low, mid);       
+    int[] right = findMaximumSubarray(a, mid+1, high);   
+    int[] cross = findMaxCrossingSubarray(a, low, mid, high);
 
-        if(left[2] >= right[2] && left[2] >= cross[2]) 
-            return left;
-        else if (right[2] >= left[2] && right[2] >= cross[2]) 
-            return right;
-        else 
-            return cross;
-    }
+    if(left[2] >= right[2] && left[2] >= cross[2]) 
+        return left;
+    else if (right[2] >= cross[2])  // right[2] >= left[2] shertini chixardim, chunki onsuz da odenir
+        return right;
+    else 
+        return cross;
 }
+
 
 private static int[] findMaxCrossingSubarray(int[] a , int low, int mid, int high) {
     int sum = 0, leftSum = Integer.MIN_VALUE, rightSum = Integer.MIN_VALUE;   
