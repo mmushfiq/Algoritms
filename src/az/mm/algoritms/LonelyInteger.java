@@ -1,5 +1,7 @@
 package az.mm.algoritms;
 
+import java.util.Arrays;
+
 public class LonelyInteger {
 
     public static void main(String[] args) {
@@ -26,14 +28,38 @@ public class LonelyInteger {
     
     public static int getLonelyInteger2(int[] arr) {
         int unique = 0;
-        for (int i : arr) {
-            System.out.print(Integer.toBinaryString(i)+" - ");
-            System.out.println(Integer.toString(i, 2));
+        System.out.print("0(000)");  // unique
+        for (int i : arr){ 
+            System.out.print(" ^ " + i + "(");
+            System.out.print(String.format("%3s", Integer.toBinaryString(i)).replace(" ", "0") + ")");
             unique ^= i;
-        }
+        } 
 
+        return unique;
+    } 
+    
+public static int getLonelyInteger22(int[] arr) {
+    int unique = 0;
+    System.out.print(unique + "("+Integer.toBinaryString(unique)+")");
+    for (int i : arr){ 
+        System.out.print(" ^ " + i + "("+Integer.toBinaryString(i)+")");
+        unique ^= i;
+    } 
+
+    return unique;
+} 
+    
+    
+    public static int getLonelyInteger3(int[] arr) {
+        int unique = 0;
+        int[] k = new int[100];
+        for (int i=0; i<arr.length; i++)
+            k[arr[i]]++;
+        
+        for (int i=0; i<k.length; i++) 
+            if(k[i] == 1) return i;
+        
         return unique;
     }
     
-
 }
