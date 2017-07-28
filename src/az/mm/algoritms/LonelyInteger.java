@@ -14,7 +14,7 @@ public class LonelyInteger {
         arr = new int[]{4, 5, 7, 6, 4, 7, 5, 8, 8};
         */
         
-        System.out.println(getLonelyInteger2(arr));
+        System.out.println(getLonelyInteger3(arr));
     }
 
     public static int getLonelyInteger(int[] arr) {
@@ -50,16 +50,17 @@ public static int getLonelyInteger22(int[] arr) {
 } 
     
     
-    public static int getLonelyInteger3(int[] arr) {
-        int unique = 0;
-        int[] k = new int[100];
-        for (int i=0; i<arr.length; i++)
-            k[arr[i]]++;
-        
-        for (int i=0; i<k.length; i++) 
-            if(k[i] == 1) return i;
-        
-        return unique;
-    }
+public static int getLonelyInteger3(int[] arr) {
+    int unique = 0;
+    int[] k = new int[101];  // sayma massivimiz
+    for (int i=0; i<arr.length; i++)
+        k[arr[i]]++;
+
+    for (int i=0; i<k.length; i++) 
+        if(k[i] == 1) return i;
+
+    return unique;
+}
+
     
 }
