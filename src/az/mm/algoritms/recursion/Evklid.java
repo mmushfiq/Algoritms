@@ -1,4 +1,4 @@
-package az.mm.algoritms;
+package az.mm.algoritms.recursion;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package az.mm.algoritms;
+package az.mm.algoritms.recursion;
 
-public class Recursion {
+public class RecursionPrint {
 
     public static void main(String[] args) {
         printDesc(10);
