@@ -1,7 +1,5 @@
 package az.mm.algoritms;
 
-import java.util.Arrays;
-
 public class RemoveDuplicateWords {
 
     public static void main(String[] args) {
@@ -12,15 +10,19 @@ public class RemoveDuplicateWords {
             "Senior iOS Developer",
             "Application Developer for Application Development Division",
             "Senior Software Developer Senior Software Developer",
-            "Senior Java Developer / Architect",
+            "Senior Java Developer / Architect Senior Java Developer / Architect",
             "Lead C#.NET Software Engineer (Hyde Park) Lead C#.NET Software Engineer (Hyde Park)",
             "VB.NET Software Developer VB.NET Software Developer",
             "Android Developer Android Developer"
         };
+        
+        System.out.println("----- Before -----");
         print(jobTitles);
+        
         removeDuplicateWords(jobTitles);
+        
+        System.out.println("\n----- After -----");
         print(jobTitles);
-
     }
 
     public static void removeDuplicateWords(String[] arr) {
@@ -38,8 +40,7 @@ public class RemoveDuplicateWords {
 
     private static void print(String[] arr) {
         for (String text : arr) 
-            System.out.println("job title: " + text);
-        
+            System.out.println(text);
     }
 
 }
