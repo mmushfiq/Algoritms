@@ -9,6 +9,7 @@ public class RodCutting {
         System.out.println(cutRod(p, p.length));
     }
 
+    // complexity - T(n) = 2^n
     public static int cutRod(int[] p, int n) {
         if (n == 0) return 0;
         
