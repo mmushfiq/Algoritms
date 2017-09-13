@@ -48,10 +48,10 @@ import java.util.Map;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Arbitrage {
+public class Arbitrage2 {
 
     // this class cannot be instantiated
-    private Arbitrage() { }
+    private Arbitrage2() { }
 
     /**
      *  Reads the currency exchange table from standard input and
@@ -59,6 +59,32 @@ public class Arbitrage {
      */
     public static void main(String[] args) {
         
+   
+        String[] currencies = {"USD", "CHF", "GBP", "JPY", "RUB", "TRY", "EUR"};
+        Map<String, Map<String, Double>> ratesMap = new CurrencyRate().getRates();
+        
+        // V currencies
+        int V = currencies.length;
+        String[] name = new String[V];
+
+        // create complete network
+        EdgeWeightedDigraph G = new EdgeWeightedDigraph(V);
+        for (int v = 0; v < V; v++) {
+            name[v] = currencies[v];
+            System.out.print(name[v]+"\t");
+            Map<String, Double> map = ratesMap.get(currencies[v]);
+            for (int w = 0; w < V; w++) {
+                
+                double rate = (v == w) ? 1 : map.get(currencies[w]);
+                System.out.print(rate+"\t\t");
+                DirectedEdge e = new DirectedEdge(v, w, -Math.log(rate));
+                G.addEdge(e);
+            }
+            System.out.println("");
+        }
+      
+
+        /*
         // V currencies
         int V = StdIn.readInt();
         String[] name = new String[V];
@@ -73,7 +99,7 @@ public class Arbitrage {
                 G.addEdge(e);
             }
         }
-        
+        */
 
         // find negative cycle
         BellmanFordSP spt = new BellmanFordSP(G, 0);

@@ -1,34 +1,15 @@
 package az.mm.algoritms.arbitrage;
 
+import az.mm.algoritms.arbitrage.currency.Bank;
 import az.mm.algoritms.arbitrage.currency.CurrencyRate;
+import az.mm.algoritms.arbitrage.currency.ExcelPOI;
 import edu.princeton.cs.introcs.StdIn;
 
 import edu.princeton.cs.introcs.StdOut;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-/*************************************************************************
- *  Compilation:  javac Arbitrage.java
- *  Execution:    java Arbitrage < input.txt
- *  Dependencies: EdgeWeightedDigraph.java DirectedEdge.java
- *                BellmanFordSP.java
- *  Data file:    http://algs4.cs.princeton.edu/44sp/rates.txt
- *
- *  Arbitrage detection.
- *
- *  % more rates.txt
- *  5
- *  USD 1      0.741  0.657  1.061  1.005
- *  EUR 1.349  1      0.888  1.433  1.366
- *  GBP 1.521  1.126  1      1.614  1.538
- *  CHF 0.942  0.698  0.619  1      0.953
- *  CAD 0.995  0.732  0.650  1.049  1
- *
- *  % java Arbitrage < rates.txt
- *  1000.00000 USD =  741.00000 EUR
- *   741.00000 EUR = 1012.20600 CAD
- *  1012.20600 CAD = 1007.14497 USD
- *
- *************************************************************************/
 
 /**
  *  The <tt>Arbitrage</tt> class provides a client that finds an arbitrage
@@ -48,16 +29,19 @@ import java.util.Map;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Arbitrage {
+public class Arbitrage3 {
 
     // this class cannot be instantiated
-    private Arbitrage() { }
+    private Arbitrage3() { }
 
     /**
      *  Reads the currency exchange table from standard input and
      *  prints an arbitrage opportunity to standard output (if one exists).
      */
     public static void main(String[] args) {
+        
+         List<Bank> bankList = ExcelPOI.getBankList();
+         System.out.println(bankList);
         
         // V currencies
         int V = StdIn.readInt();
