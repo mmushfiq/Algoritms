@@ -22,7 +22,7 @@ public class Bank {
     public Bank() {
     }
 
-    public Bank(String name, double bUSD, double sUSD, double bEUR, double sEUR, double bRUB, double sRUB, double bTRY, double sTRY, double bGBP, double sGBP) {
+    public Bank(String name, double bUSD, double sUSD, double bEUR, double sEUR, double bRUB, double sRUB, double bGBP, double sGBP, double bTRY, double sTRY) {
         this.name = name;
         this.bUSD = bUSD;
         this.sUSD = sUSD;
@@ -30,13 +30,14 @@ public class Bank {
         this.sEUR = sEUR;
         this.bRUB = bRUB;
         this.sRUB = sRUB;
-        this.bTRY = bTRY;
-        this.sTRY = sTRY;
         this.bGBP = bGBP;
         this.sGBP = sGBP;
+        this.bTRY = bTRY;
+        this.sTRY = sTRY;
+
     }
     
-    public Bank(int id, String name, double bUSD, double sUSD, double bEUR, double sEUR, double bRUB, double sRUB, double bTRY, double sTRY, double bGBP, double sGBP) {
+    public Bank(int id, String name, double bUSD, double sUSD, double bEUR, double sEUR, double bRUB, double sRUB, double bGBP, double sGBP, double bTRY, double sTRY) {
         this.id = id;
         this.name = name;
         this.bUSD = bUSD;
@@ -45,10 +46,11 @@ public class Bank {
         this.sEUR = sEUR;
         this.bRUB = bRUB;
         this.sRUB = sRUB;
-        this.bTRY = bTRY;
-        this.sTRY = sTRY;
         this.bGBP = bGBP;
         this.sGBP = sGBP;
+        this.bTRY = bTRY;
+        this.sTRY = sTRY;
+
     }
 
     public int getId() {
@@ -149,8 +151,10 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "Bank{" + "name=" + name + ", bUSD=" + bUSD + ", sUSD=" + sUSD + ", bEUR=" + bEUR + ", sEUR=" + sEUR + ", bRUB=" + bRUB + ", sRUB=" + sRUB + ", bTRY=" + bTRY + ", sTRY=" + sTRY + ", bGBP=" + bGBP + ", sGBP=" + sGBP + '}' + "\n";
+        return "\nBank{" + "id=" + id + ", name=" + name + ", bUSD=" + bUSD + ", sUSD=" + sUSD + ", bEUR=" + bEUR + ", sEUR=" + sEUR + ", bRUB=" + bRUB + ", sRUB=" + sRUB + ", bGBP=" + bGBP + ", sGBP=" + sGBP + ", bTRY=" + bTRY + ", sTRY=" + sTRY + '}';
     }
+
+
 
     
 }
