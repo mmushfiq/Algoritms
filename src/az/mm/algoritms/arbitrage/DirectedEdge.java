@@ -28,7 +28,7 @@ public class DirectedEdge {
     private final int w;
     private final double weight;
     
-    private int id;  //bankin adi 14.09.2017
+    private String name;  //bankin adi 14.09.2017
 
     /**
      * Initializes a directed edge from vertex <tt>v</tt> to vertex <tt>w</tt> with
@@ -49,14 +49,14 @@ public class DirectedEdge {
         this.weight = weight;
     }
     
-    public DirectedEdge(int v, int w, double weight, int id) {
+    public DirectedEdge(int v, int w, double weight, String name) {
         if (v < 0) throw new IndexOutOfBoundsException("Vertex names must be nonnegative integers");
         if (w < 0) throw new IndexOutOfBoundsException("Vertex names must be nonnegative integers");
         if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
         this.v = v;
         this.w = w;
         this.weight = weight;
-        this.id = id;
+        this.name = name;
     }
 
     /**
@@ -82,6 +82,12 @@ public class DirectedEdge {
     public double weight() {
         return weight;
     }
+
+    public String getBankName() {
+        return name;
+    }
+    
+    
 
     /**
      * Returns a string representation of the directed edge.

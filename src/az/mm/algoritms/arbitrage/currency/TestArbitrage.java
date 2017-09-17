@@ -34,7 +34,7 @@ public class TestArbitrage {
                     System.out.print(1 + "\t");
                     continue;
                 }
-                opt = exc.getOptimalRates(cur[i], cur[j]);
+                opt = exc.getOptimalRates(cur[i], cur[j], ExcelPOI.bankList);
                 System.out.print(opt.getValue() + "\t");
             }
             System.out.println("");
