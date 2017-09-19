@@ -1,5 +1,7 @@
 package az.mm.algoritms.arbitrage.currency;
 
+import java.util.Date;
+
 /**
  *
  * @author MM
@@ -18,6 +20,7 @@ public class Bank {
     private double sTRY;
     private double bGBP;
     private double sGBP;
+    private Date date;
 
     public Bank() {
     }
@@ -51,6 +54,21 @@ public class Bank {
         this.bTRY = bTRY;
         this.sTRY = sTRY;
 
+    }
+    
+    public Bank(String name, double bUSD, double sUSD, double bEUR, double sEUR, double bRUB, double sRUB, double bGBP, double sGBP, double bTRY, double sTRY, Date date) {
+        this.name = name;
+        this.bUSD = bUSD;
+        this.sUSD = sUSD;
+        this.bEUR = bEUR;
+        this.sEUR = sEUR;
+        this.bRUB = bRUB;
+        this.sRUB = sRUB;
+        this.bGBP = bGBP;
+        this.sGBP = sGBP;
+        this.bTRY = bTRY;
+        this.sTRY = sTRY;
+        this.date = date;
     }
 
     public int getId() {
@@ -148,11 +166,21 @@ public class Bank {
     public void setsGBP(double sGBP) {
         this.sGBP = sGBP;
     }
+    
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     @Override
     public String toString() {
-        return "\nBank{" + "id=" + id + ", name=" + name + ", bUSD=" + bUSD + ", sUSD=" + sUSD + ", bEUR=" + bEUR + ", sEUR=" + sEUR + ", bRUB=" + bRUB + ", sRUB=" + sRUB + ", bGBP=" + bGBP + ", sGBP=" + sGBP + ", bTRY=" + bTRY + ", sTRY=" + sTRY + '}';
+        return "\nBank{" + "id=" + id + ", name=" + name + ", bUSD=" + bUSD + ", sUSD=" + sUSD + ", bEUR=" + bEUR + ", sEUR=" + sEUR + ", bRUB=" + bRUB + ", sRUB=" + sRUB + ", bGBP=" + bGBP + ", sGBP=" + sGBP + ", bTRY=" + bTRY + ", sTRY=" + sTRY +", date=" + date + '}';
     }
+
+
 
 
 

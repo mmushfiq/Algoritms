@@ -5,10 +5,12 @@ import az.mm.algoritms.arbitrage.currency.Bank;
 import az.mm.algoritms.arbitrage.currency.CurrencyRate;
 import az.mm.algoritms.arbitrage.currency.ExcelPOI;
 import az.mm.algoritms.arbitrage.currency.OptimalRate;
+import az.mm.algoritms.db.DBConnection;
 import edu.princeton.cs.introcs.StdIn;
 
 import edu.princeton.cs.introcs.StdOut;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -41,12 +43,43 @@ public class Arbitrage3 {
      *  prints an arbitrage opportunity to standard output (if one exists).
      */
     public static void main(String[] args) {
+        List<Bank> bankList = ExcelPOI.bankList;
+//        List<Bank> bankList = AznTodayCurrency.bankList;
         
-//          String[] currencies = {"USD", "CHF", "GBP", "JPY", "RUB", "TRY", "EUR"};
+//        startArbitrage(bankList);
+        
+        aniMezenne();
+    }
+    
+    
+    public static void aniMezenne(){
+        List<Bank> bankList = new DBConnection().getBankList();
+        List<Bank> partList = new ArrayList<>();
+        Date date = null;
+        
+        for(Bank b: bankList){
+           if(date == null) date = b.getDate();
+           if(date == b.getDate()){
+               partList.add(b);
+           } else {
+               System.out.println("\n------------------------\n"+date);
+               System.out.println(partList);
+//               startArbitrage(partList);
+               partList.clear();
+               date = b.getDate();
+           }
+        }
+        
+        
+    
+    }
+    
+    
+    public static void startArbitrage(List<Bank> bankList){
+        //          String[] currencies = {"USD", "CHF", "GBP", "JPY", "RUB", "TRY", "EUR"};
         String[] currencies = {"AZN", "USD", "EUR", "GBP", "RUB", "TRY",};
         
-//        Map<String, Map<String, OptimalRate>> ratesMap = new ExcelPOI().getRates(ExcelPOI.bankList);
-        Map<String, Map<String, OptimalRate>> ratesMap = new ExcelPOI().getRates(AznTodayCurrency.bankList);
+        Map<String, Map<String, OptimalRate>> ratesMap = new ExcelPOI().getRates(bankList);
         
         String bankName;
         
