@@ -59,12 +59,13 @@ public class Arbitrage3 {
         
         for(Bank b: bankList){
            if(date == null) date = b.getDate();
-           if(date == b.getDate()){
+//            System.out.println(date + " <> " + b.getDate());
+           if(date.equals(b.getDate())){
                partList.add(b);
            } else {
                System.out.println("\n------------------------\n"+date);
-               System.out.println(partList);
-//               startArbitrage(partList);
+//               System.out.println(partList);
+               startArbitrage(partList);
                partList.clear();
                date = b.getDate();
            }
