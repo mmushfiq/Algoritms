@@ -56,6 +56,7 @@ public class DBConnection {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         List<Bank> bankList = new ArrayList<>();
+        String period = " and DATE_FORMAT(date,'%Y-%m')='2017-06'";
         try {
             connection = getDBConnection();
             String sql = "SELECT name, \n" +
@@ -88,7 +89,7 @@ public class DBConnection {
                         "(\n" +
                         "SELECT cr.bank_id, b.name, cr.currency_id, cr.buy, cr.sell, cr.date\n" +
                         "FROM currency_rate cr, bank b\n" +
-                        "WHERE cr.currency_id IN (1,2,3,4,6,7) AND cr.bank_id != 27 AND cr.bank_id=b.id\n" +
+                        "WHERE cr.currency_id IN (1,2,3,4,6,7) AND cr.bank_id != 27 AND cr.bank_id=b.id\n" + period +
                         "GROUP BY cr.bank_id, cr.currency_id, DATE(cr.date)\n" +
                         "ORDER BY cr.date DESC, cr.bank_id, cr.currency_id) cr) t\n" +
                         "GROUP BY DATE, bank_id\n" +
