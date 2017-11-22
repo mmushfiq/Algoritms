@@ -26,7 +26,7 @@ public class DBConnection {
 
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/animezenne?zeroDateTimeBehavior=convertToNull", "root", "mm654874");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/animezenne?zeroDateTimeBehavior=convertToNull", "root", "root");
             return connection;
         } catch (SQLException e) {
             infoCatchMessage(e, "getDBConnection");
